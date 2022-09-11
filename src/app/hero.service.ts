@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { HEROES } from './/mock-heroes';
+import { MessageService } from './message.service';
 
 
 // By default, ng generate service registers a provider with the root injector for your service by including provider metadata, that's providedIn: 'root' in the @Injectable() decorator.
@@ -13,9 +15,22 @@ import { HEROES } from './/mock-heroes';
 
 export class HeroService {
 
-  // get hero data
-  getHeroes():Hero[] {
-    return HEROES;
+  // get hero data:
+
+  // getHeroes():Hero[] {
+  //   return HEROES;
+  // }
+
+  // asynchron solution:
+
+  getHeroes():Observable<Hero[]> {
+    const heroes = of(HEROES);
+    this.messageService.add('heroService: fetched heroes')
+    return heroes;
   }
-  constructor() { }
+// of(HEROES) returns an Observable<Hero[]> that emits a single value, the array of mock heroes.
+  constructor(private messageService: MessageService) { }
 }
+
+
+// service-in-service scenario in which I inject the MessageService into the HeroService which is injected into the HeroesComponent.
