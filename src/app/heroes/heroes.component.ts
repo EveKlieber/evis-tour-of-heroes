@@ -23,11 +23,11 @@ export class HeroesComponent implements OnInit {
   }
   // The component's ngOnInit lifecycle hook calls the HeroService method, not the constructor.
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
-// method to retrieve the heroes from the service.
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // }
+
   getHeroes():void {
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes)
