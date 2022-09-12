@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import  { Hero } from '../hero';
+import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
 
@@ -17,10 +17,11 @@ export class HeroesComponent implements OnInit {
       
   // Inject the HeroService
   constructor(private heroService: HeroService, private messageService: MessageService) { }
-// The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site.
+
   ngOnInit(): void {
     this.getHeroes();
   }
+  // The component's ngOnInit lifecycle hook calls the HeroService method, not the constructor.
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
