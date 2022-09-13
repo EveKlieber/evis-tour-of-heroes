@@ -24,7 +24,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,6 +32,12 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes)
   }
+
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
+
 // The HeroService.getHeroes() method has a synchronous signature, which implies that the HeroService can fetch heroes synchronously. The HeroesComponent consumes the getHeroes() result as if heroes could be fetched synchronously. This approach won't work in a real application that uses asynchronous calls. It works now because my service synchronously returns mock heroes. ---> HeroService.getHeroes() must have an asynchronous signature of some kind.  --> observable.subscribe()
 // The subscribe() method passes the emitted array to the callback, which sets the component's heroes property.
 
